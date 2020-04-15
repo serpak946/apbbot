@@ -12,7 +12,7 @@ import os
 sys.setrecursionlimit(5000)
 
 token=os.environ.get('BOT_TOKEN')
-bot=telebot.TeleBot('token')
+bot=telebot.TeleBot(token)
 
 #apihelper.proxy = { ' https ' : ' socks5: // @ 176.9.75.42:1080 ' }
 
