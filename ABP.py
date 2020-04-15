@@ -7,10 +7,12 @@ import time
 from multiprocessing import Process
 #from itertools import groupby
 import sys
+import os
 
 sys.setrecursionlimit(5000)
 
-bot=telebot.TeleBot('1119203761:AAFtFeWEp8e5DsGPKprHw6YFTtJzL7nwP-I')
+token=os.environ.get('BOT_TOKEN')
+bot=telebot.TeleBot('token')
 
 #apihelper.proxy = { ' https ' : ' socks5: // @ 176.9.75.42:1080 ' }
 
