@@ -1,5 +1,4 @@
 requests
 BeautifulSoup4
 datetime
-time
 pyTelegramBotAPI
