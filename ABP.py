@@ -100,16 +100,16 @@ def lalala(message):
     if message.text.lower() == 'узнать курс':
         bot.send_message(message.chat.id,('Сейчас ' + d.strftime('%H:%M:%S')))
         bot.send_message(message.chat.id,("Курс рубля:"))
-        bot.send_message(message.chat.id,('RUB/RUP:  Покупка: '+ pok + '      Продажа: ' + prod), reply_markup=keyboard1)
+        bot.send_message(message.chat.id,('RUB/RUP:  Покупка: '+ pok + '      Продажа: ' + prod),reply_markup=keyboard1)
     elif message.text.lower() == 'добавиться в подписку на курс':
         for x in [podpiska1]:
             if message.chat.id in x:
-                bot.send_message(message.chat.id, ("Вы уже подписаны на курс рубля"))
+                bot.send_message(message.chat.id, ("Вы уже подписаны на курс рубля"),reply_markup=keyboard1)
             else:
                 podpiska.append(message.chat.id)
                 plus_podp()
-                bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"))
-    else: bot.send_message(message.chat.id,("Неизвестная команда"))
+                bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"),reply_markup=keyboard1)
+    else: bot.send_message(message.chat.id,("Неизвестная команда"),reply_markup=keyboard1)
     print(message.chat.id)
     print(message.from_user.username)
     print(message.from_user.first_name)
