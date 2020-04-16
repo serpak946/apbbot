@@ -8,8 +8,11 @@ from multiprocessing import Process
 #from itertools import groupby
 import sys
 import os
+import pytz
 
 sys.setrecursionlimit(5000)
+
+TimeZone=pytz.timezone('Europe/Tiraspol')
 
 token=os.environ.get('BOT_TOKEN')
 bot=telebot.TeleBot(token)
@@ -89,7 +92,7 @@ def lalala(message):
     """Действия бота, когда ему отправлено сообщение"""
     global podpiska
     global d
-    d = datetime.datetime.today() #Время на компьютере сейчас
+    d = datetime.datetime.now(tz=TimeZone) #Время на компьютере сейчас
     parse()
     if message.text.lower() == 'узнать курс':
         bot.send_message(message.chat.id,('Сейчас ' + d.strftime('%H:%M:%S')))
@@ -131,7 +134,7 @@ def CURS():
     global d
     global pok2
     while True:
-        d = datetime.datetime.today()  # Время на компьютере сейчас
+        d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
         parse()
         lengthpok=6-len(str(pok2))
         lengthprod=6-len(str(prod2))
