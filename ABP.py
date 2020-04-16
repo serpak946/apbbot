@@ -157,8 +157,8 @@ def CURS():
                 bot.send_message(r,('Стало:  Покупка: ' + pok + '      Продажа: ' + prod),reply_markup=keyboard1)
             prod2=prod1
             pok2=pok1
-            os.environ.update('prod2',prod1)
-            os.environ.update('pok2',pok1)
+            os.putenv('prod2',prod1)
+            os.putenv('pok2',pok1)
             #file = open('prod2.txt', 'w')
             #file.writelines(str(prod1))
             #file.close()
