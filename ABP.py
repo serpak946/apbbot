@@ -29,13 +29,16 @@ HEADERS ={     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0)
 podpiska=[]
 podpiska1=[]
 
-file= open(r'prod2.txt','r')
-prod2 = float(file.readline())
-file.close()
+prod2=float(os.environ.get('prod2'))
+pok2=float(os.environ.get('pok2'))
 
-file= open(r'pok2.txt','r')
-pok2 = float(file.readline())
-file.close()
+#file= open(r'prod2.txt','r')
+#prod2 = float(file.readline())
+#file.close()
+
+#file= open(r'pok2.txt','r')
+#pok2 = float(file.readline())
+#file.close()
 
 file1 = open(r'podpiska.txt','r')
 num_lines=len(file1.readlines())
@@ -154,12 +157,14 @@ def CURS():
                 bot.send_message(r,('Стало:  Покупка: ' + pok + '      Продажа: ' + prod),reply_markup=keyboard1)
             prod2=prod1
             pok2=pok1
-            file = open('prod2.txt', 'w')
-            file.writelines(str(prod1))
-            file.close()
-            file = open('pok2.txt', 'w')
-            file.writelines(str(pok1))
-            file.close()
+            os.environ.update('prod2',prod1)
+            os.environ.update('pok2',pok1)
+            #file = open('prod2.txt', 'w')
+            #file.writelines(str(prod1))
+            #file.close()
+            #file = open('pok2.txt', 'w')
+            #file.writelines(str(pok1))
+            #file.close()
         time.sleep(60)
 
 
