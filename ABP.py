@@ -109,6 +109,8 @@ def lalala(message):
                 podpiska.append(message.chat.id)
                 plus_podp()
                 bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"),reply_markup=keyboard1)
+    elif message.text.lower() == '/start':
+        bot.send_message(message.chat.id, ("Здравствуйте! Я бот🤖, который может присылать вам курс российского рубля!"))
     else: bot.send_message(message.chat.id,("Неизвестная команда"),reply_markup=keyboard1)
     print(message.chat.id)
     print(message.from_user.username)
