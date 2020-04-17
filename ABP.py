@@ -57,11 +57,10 @@ def plus_podp():
     global podpiska
     podpiska=list(set(podpiska))
 
-
-    file = open('podpiska.txt', 'w')
-    for x in podpiska:
-        file.write((str(x)))
-    file.close()
+    #file = open('podpiska.txt', 'w')
+    #for x in podpiska:
+    #    file.write((str(x)))
+    #file.close()
 
 def get_html(url, params=None):
     '''Заходим на сайт'''
@@ -108,6 +107,7 @@ def lalala(message):
             else:
                 podpiska.append(message.chat.id)
                 plus_podp()
+                bot.send_message(477322157,(message.chat.id))
                 bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"),reply_markup=keyboard1)
     elif message.text.lower() == '/start':
         bot.send_message(message.chat.id, ("Здравствуйте! Я бот🤖, который может присылать вам курс российского рубля!"),reply_markup=keyboard1)
@@ -118,14 +118,14 @@ def lalala(message):
     print(message.from_user.first_name)
     print(message.from_user.last_name )
     print(message.text,'\n')
-    file3 = open('logs.txt.', 'a')
-    file3.writelines(d.strftime('%H:%M:%S')+'\n')
-    file3.writelines(str(message.chat.id)+'\n')
-    file3.writelines(message.from_user.username+'\n')
-    file3.writelines(message.from_user.first_name+'\n')
-    file3.writelines(message.from_user.last_name+'\n' )
-    file3.writelines((message.text+'\n'*2))
-    file3.close()
+    #file3 = open('logs.txt.', 'a')
+    #file3.writelines(d.strftime('%H:%M:%S')+'\n')
+    #file3.writelines(str(message.chat.id)+'\n')
+    #file3.writelines(message.from_user.username+'\n')
+    #file3.writelines(message.from_user.first_name+'\n')
+    #file3.writelines(message.from_user.last_name+'\n' )
+    #file3.writelines((message.text+'\n'*2))
+    #file3.close()
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup()
 keyboard1.row('Узнать курс', 'Добавиться в подписку на курс')
@@ -160,8 +160,6 @@ def CURS():
                 bot.send_message(r,('Стало:  Покупка: ' + pok + '      Продажа: ' + prod),reply_markup=keyboard1)
             prod2=prod1
             pok2=pok1
-            os.putenv('prod2',str(prod1))
-            os.putenv('pok2',str(pok1))
             #file = open('prod2.txt', 'w')
             #file.writelines(str(prod1))
             #file.close()
@@ -184,6 +182,6 @@ if __name__=='__main__':
         try:
             bot.polling(none_stop=True)
         except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
-            #print(e)
+            print(e)
             # повторяем через 5 секунд в случае недоступности сервера Telegram
             time.sleep(5)
