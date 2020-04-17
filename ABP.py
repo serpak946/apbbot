@@ -112,6 +112,7 @@ def lalala(message):
     elif message.text.lower() == '/start':
         bot.send_message(message.chat.id, ("Здравствуйте! Я бот🤖, который может присылать вам курс российского рубля!"))
     else: bot.send_message(message.chat.id,("Неизвестная команда"),reply_markup=keyboard1)
+    print(d.strftime('%H:%M:%S'))
     print(message.chat.id)
     print(message.from_user.username)
     print(message.from_user.first_name)
