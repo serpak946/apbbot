@@ -174,7 +174,8 @@ def start_proc():
     p1=Process(target=CURS, args=())
     p1.start()
 
-
+    
+bot.send_message(477322157,("Старт"))
 parse()
 
 if __name__=='__main__':
