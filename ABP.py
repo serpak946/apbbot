@@ -29,8 +29,8 @@ HEADERS ={     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0)
 podpiska=[]
 podpiska1=[]
 
-prod2=float(os.environ.get('prod2'))
-pok2=float(os.environ.get('pok2'))
+#prod2=float(os.environ.get('prod2'))
+#pok2=float(os.environ.get('pok2'))
 
 #file= open(r'prod2.txt','r')
 #prod2 = float(file.readline())
@@ -175,6 +175,7 @@ def start_proc():
     p1.start()
 
 
+parse()
 
 if __name__=='__main__':
     start_proc()
