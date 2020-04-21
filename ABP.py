@@ -107,7 +107,11 @@ def lalala(message):
             else:
                 podpiska.append(message.chat.id)
                 plus_podp()
-                bot.send_message(477322157,(message.chat.id))
+                bot.send_message(477322157, (d.strftime('%H:%M:%S')))
+                bot.send_message(477322157, (message.chat.id))
+                bot.send_message(477322157, (message.from_user.username))
+                bot.send_message(477322157, (message.from_user.first_name))
+                bot.send_message(477322157, (message.from_user.last_name))
                 bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"),reply_markup=keyboard1)
     elif message.text.lower() == '/start':
         bot.send_message(message.chat.id, ("Здравствуйте! Я бот🤖, который может присылать вам курс российского рубля!"),reply_markup=keyboard1)
@@ -177,6 +181,9 @@ def start_proc():
     
 bot.send_message(477322157,("Старт"))
 parse()
+pok2=pok1
+prod2=prod1
+
 
 if __name__=='__main__':
     start_proc()
