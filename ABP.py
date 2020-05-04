@@ -146,6 +146,8 @@ def CURS():
     while True:
         d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
         parse()
+        pok1=0.2222
+        prod1=0.2222
         lengthpok=6-len(str(pok2))
         lengthprod=6-len(str(prod2))
         if (prod2!= prod1) or (pok2!=pok1):
@@ -183,8 +185,8 @@ bot.send_message(477322157,("Старт"))
 parse()
 #pok2=0
 #prod2=0
-pok2=pok1+1
-prod2=prod1+1
+pok2=pok1
+prod2=prod1
 
 
 if __name__=='__main__':
