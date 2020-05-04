@@ -144,7 +144,6 @@ def CURS():
     global d
     global pok2
     while True:
-        print('st')
         d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
         parse()
         lengthpok=6-len(str(pok2))
