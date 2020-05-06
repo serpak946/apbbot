@@ -162,6 +162,7 @@ def CURS():
                     bot.send_message(r, ("Курс RUB/RUP понизился:"))
                 bot.send_message(r,('Было:   Покупка: ' + str(pok2)+'0'*lengthpok + '      Продажа: ' + str(prod2)+'0'*lengthprod))
                 bot.send_message(r,('Стало:  Покупка: ' + pok + '      Продажа: ' + prod),reply_markup=keyboard1)
+                time.sleep(5)
             prod2=prod1
             pok2=pok1
             #file = open('prod2.txt', 'w')
