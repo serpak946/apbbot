@@ -143,57 +143,57 @@ def CURS():
     global prod2
     global d
     global pok2
+    print(1)
     while True:
-        d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
         parse()
-        lengthpok=6-len(str(pok2))
-        lengthprod=6-len(str(prod2))
-        if (prod2!= prod1) or (pok2!=pok1):
-            for y in range(len(podpiska)):
-                r=podpiska[y]
+        if (prod2 != prod1) or (pok2 != pok1):
+            d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
+            lengthpok = 6 - len(str(pok2))
+            lengthprod = 6 - len(str(prod2))
+            for y in range(podpiska):
+                r = podpiska[y]
                 bot.send_message(r, ('Сейчас ' + d.strftime('%H:%M:%S')))
-                if prod1>prod2:
+                if prod1 > prod2:
                     bot.send_message(r, ("Курс RUB/RUP повысился:"))
-                elif prod1<prod2:
-                    bot.send_message(r,("Курс RUB/RUP понизился:"))
-                elif pok1>pok2:
+                elif prod1 < prod2:
+                    bot.send_message(r, ("Курс RUB/RUP понизился:"))
+                elif pok1 > pok2:
                     bot.send_message(r, ("Курс RUB/RUP повысился:"))
                 else:
                     bot.send_message(r, ("Курс RUB/RUP понизился:"))
-                bot.send_message(r,('Было:   Покупка: ' + str(pok2)+'0'*lengthpok + '      Продажа: ' + str(prod2)+'0'*lengthprod))
-                bot.send_message(r,('Стало:  Покупка: ' + pok + '      Продажа: ' + prod),reply_markup=keyboard1)
-                time.sleep(5)
-            prod2=prod1
-            pok2=pok1
-            #file = open('prod2.txt', 'w')
-            #file.writelines(str(prod1))
-            #file.close()
-            #file = open('pok2.txt', 'w')
-            #file.writelines(str(pok1))
-            #file.close()
+                bot.send_message(r, ('Было:   Покупка: ' + str(pok2) + '0' * lengthpok + '      Продажа: ' + str(
+                    prod2) + '0' * lengthprod))
+                bot.send_message(r, ('Стало:  Покупка: ' + pok + '      Продажа: ' + prod), reply_markup=keyboard1)
+                time.sleep(1)
+            prod2 = prod1
+            pok2 = pok1
+            # file = open('prod2.txt', 'w')
+            # file.writelines(str(prod1))
+            # file.close()
+            # file = open('pok2.txt', 'w')
+            # file.writelines(str(pok1))
+            # file.close()
         time.sleep(60)
 
 
-
 def start_proc():
-    p1=Process(target=CURS, args=())
+    p1 = Process(target=CURS, args=())
     p1.start()
 
-    
-bot.send_message(477322157,("Старт"))
+
+
+bot.send_message(477322157, ("Старт"))
 parse()
-#pok2=0
-#prod2=0
 pok2=pok1
 prod2=prod1
 
 
-if __name__=='__main__':
-    start_proc()
-    while True:
-        try:
-            bot.polling(none_stop=True)
-        except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
-            print(e)
-            # повторяем через 5 секунд в случае недоступности сервера Telegram
-            time.sleep(5)
+start_proc()
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
+        print(e)
+        bot.send_message(477322157, (e))
+        # повторяем через 5 секунд в случае недоступности сервера Telegram
+        time.sleep(5)
