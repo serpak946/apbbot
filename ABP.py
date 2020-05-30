@@ -26,8 +26,8 @@ HEADERS ={     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0)
     "Connection": "keep-alive"
                }
 
-podpiska=[]
-podpiska1=[]
+podpiska=["609128888", "498307596", "477322157"]
+podpiska1=[609128888, 498307596, 477322157]
 
 #prod2=float(os.environ.get('prod2'))
 #pok2=float(os.environ.get('pok2'))
@@ -40,17 +40,17 @@ podpiska1=[]
 #pok2 = float(file.readline())
 #file.close()
 
-file1 = open(r'podpiska.txt','r')
-num_lines=len(file1.readlines())
-file1.close()
+#file1 = open(r'podpiska.txt','r')
+#num_lines=len(file1.readlines())
+#file1.close()
 
-file1 = open(r'podpiska.txt','r')
-for y in range(num_lines):
-    podpiska.append((file1.readline()))
-    podpiska1.append(int(podpiska[y]))
-file1.close()
+#file1 = open(r'podpiska.txt','r')
+#for y in range(num_lines):
+#    podpiska.append((file1.readline()))
+#    podpiska1.append(int(podpiska[y]))
+#file1.close()
 
-podpiska[num_lines-1]=(podpiska[num_lines-1]+'\n')
+#podpiska[num_lines-1]=(podpiska[num_lines-1]+'\n')
 
 
 def plus_podp():
@@ -93,6 +93,7 @@ def parse():
 def lalala(message):
     """Действия бота, когда ему отправлено сообщение"""
     global podpiska
+    global podpiska1
     global d
     d = datetime.datetime.now(tz=TimeZone) #Время на компьютере сейчас
     parse()
@@ -106,7 +107,8 @@ def lalala(message):
                 bot.send_message(message.chat.id, ("Вы уже подписаны на курс рубля"),reply_markup=keyboard1)
             else:
                 podpiska.append(message.chat.id)
-                plus_podp()
+                podpiska1.append(message.chat.id)
+                #plus_podp()
                 bot.send_message(477322157, (d.strftime('%H:%M:%S')))
                 bot.send_message(477322157, (message.chat.id))
                 bot.send_message(477322157, (message.from_user.username))
