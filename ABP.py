@@ -26,8 +26,8 @@ HEADERS ={     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0)
     "Connection": "keep-alive"
                }
 
-podpiska=["609128888", "498307596", "477322157"]
-podpiska1=[609128888, 498307596, 477322157]
+podpiska=["477322157"]
+podpiska1=[477322157]
 
 #prod2=float(os.environ.get('prod2'))
 #pok2=float(os.environ.get('pok2'))
@@ -106,7 +106,7 @@ def lalala(message):
             if message.chat.id in x:
                 bot.send_message(message.chat.id, ("Вы уже подписаны на курс рубля"),reply_markup=keyboard1)
             else:
-                podpiska.append(message.chat.id)
+                #podpiska.append(message.chat.id)
                 podpiska1.append(message.chat.id)
                 #plus_podp()
                 bot.send_message(477322157, (d.strftime('%H:%M:%S')))
@@ -153,7 +153,7 @@ def CURS():
             lengthpok = 6 - len(str(pok2))
             lengthprod = 6 - len(str(prod2))
             for y in range(podpiska):
-                r = podpiska[y]
+                r = podpiska1[y]
                 bot.send_message(r, ('Сейчас ' + d.strftime('%H:%M:%S')))
                 if prod1 > prod2:
                     bot.send_message(r, ("Курс RUB/RUP повысился:"))
