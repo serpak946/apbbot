@@ -52,16 +52,6 @@ podpiska1=[477322157]
 
 #podpiska[num_lines-1]=(podpiska[num_lines-1]+'\n')
 
-
-def plus_podp():
-    global podpiska
-    podpiska=list(set(podpiska))
-
-    #file = open('podpiska.txt', 'w')
-    #for x in podpiska:
-    #    file.write((str(x)))
-    #file.close()
-
 def get_html(url, params=None):
     '''Заходим на сайт'''
     r = requests.get(url, headers=HEADERS, params=params)
@@ -89,53 +79,6 @@ def parse():
     else:
         print('Error')
 
-@bot.message_handler(content_types=['text'])
-def lalala(message):
-    """Действия бота, когда ему отправлено сообщение"""
-    global podpiska
-    global podpiska1
-    global d
-    d = datetime.datetime.now(tz=TimeZone) #Время на компьютере сейчас
-    parse()
-    if message.text.lower() == 'узнать курс':
-        bot.send_message(message.chat.id,('Сейчас ' + d.strftime('%H:%M:%S')))
-        bot.send_message(message.chat.id,("Курс рубля:"))
-        bot.send_message(message.chat.id,('RUB/RUP:  Покупка: '+ pok + '      Продажа: ' + prod),reply_markup=keyboard1)
-    elif message.text.lower() == 'добавиться в подписку на курс':
-        for x in [podpiska1]:
-            if message.chat.id in x:
-                bot.send_message(message.chat.id, ("Вы уже подписаны на курс рубля"),reply_markup=keyboard1)
-            else:
-                #podpiska.append(message.chat.id)
-                podpiska1.append(message.chat.id)
-                #plus_podp()
-                bot.send_message(477322157, (d.strftime('%H:%M:%S')))
-                bot.send_message(477322157, (message.chat.id))
-                bot.send_message(477322157, (message.from_user.username))
-                bot.send_message(477322157, (message.from_user.first_name))
-                bot.send_message(477322157, (message.from_user.last_name))
-                bot.send_message(message.chat.id, ("Вы подписались на курс рубля!"),reply_markup=keyboard1)
-    elif message.text.lower() == '/start':
-        bot.send_message(message.chat.id, ("Здравствуйте! Я бот🤖, который может присылать вам курс российского рубля!"),reply_markup=keyboard1)
-    else: bot.send_message(message.chat.id,("Неизвестная команда"),reply_markup=keyboard1)
-    print(d.strftime('%H:%M:%S'))
-    print(message.chat.id)
-    print(message.from_user.username)
-    print(message.from_user.first_name)
-    print(message.from_user.last_name )
-    print(message.text,'\n')
-    #file3 = open('logs.txt.', 'a')
-    #file3.writelines(d.strftime('%H:%M:%S')+'\n')
-    #file3.writelines(str(message.chat.id)+'\n')
-    #file3.writelines(message.from_user.username+'\n')
-    #file3.writelines(message.from_user.first_name+'\n')
-    #file3.writelines(message.from_user.last_name+'\n' )
-    #file3.writelines((message.text+'\n'*2))
-    #file3.close()
-
-keyboard1 = telebot.types.ReplyKeyboardMarkup()
-keyboard1.row('Узнать курс', 'Добавиться в подписку на курс')
-
 def CURS():
     """Сообщает курс подписчикам"""
     global pok
@@ -147,40 +90,31 @@ def CURS():
     global pok2
     print(1)
     while True:
-        parse()
-        if (prod2 != prod1) or (pok2 != pok1):
-            d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
-            lengthpok = 6 - len(str(pok2))
-            lengthprod = 6 - len(str(prod2))
-            for y in range(podpiska):
-                r = podpiska1[y]
-                bot.send_message(r, ('Сейчас ' + d.strftime('%H:%M:%S')))
+        try:
+            parse()
+            if (prod2 != prod1) or (pok2 != pok1):
+                d = datetime.datetime.now(tz=TimeZone)  # Время на компьютере сейчас
+                lengthpok = 6 - len(str(pok2))
+                lengthprod = 6 - len(str(prod2))
+                bot.send_message(477322157, ('Сейчас ' + d.strftime('%H:%M:%S')))
                 if prod1 > prod2:
-                    bot.send_message(r, ("Курс RUB/RUP повысился:"))
+                    bot.send_message(477322157, ("Курс RUB/RUP повысился:"))
                 elif prod1 < prod2:
-                    bot.send_message(r, ("Курс RUB/RUP понизился:"))
+                    bot.send_message(477322157, ("Курс RUB/RUP понизился:"))
                 elif pok1 > pok2:
-                    bot.send_message(r, ("Курс RUB/RUP повысился:"))
+                    bot.send_message(477322157, ("Курс RUB/RUP повысился:"))
                 else:
-                    bot.send_message(r, ("Курс RUB/RUP понизился:"))
-                bot.send_message(r, ('Было:   Покупка: ' + str(pok2) + '0' * lengthpok + '      Продажа: ' + str(
-                    prod2) + '0' * lengthprod))
-                bot.send_message(r, ('Стало:  Покупка: ' + pok + '      Продажа: ' + prod), reply_markup=keyboard1)
+                    bot.send_message(477322157, ("Курс RUB/RUP понизился:"))
+                bot.send_message(477322157, ('Было:   Покупка: ' + str(pok2) + '0' * lengthpok + '      Продажа: ' + str(prod2) + '0' * lengthprod))
+                bot.send_message(477322157, ('Стало:  Покупка: ' + pok + '      Продажа: ' + prod))
                 time.sleep(1)
-            prod2 = prod1
-            pok2 = pok1
-            # file = open('prod2.txt', 'w')
-            # file.writelines(str(prod1))
-            # file.close()
-            # file = open('pok2.txt', 'w')
-            # file.writelines(str(pok1))
-            # file.close()
-        time.sleep(60)
-
-
-def start_proc():
-    p1 = Process(target=CURS, args=())
-    p1.start()
+                prod2 = prod1
+                pok2 = pok1
+            time.sleep(60)
+        except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
+            print(e)
+            bot.send_message(477322157, (e))
+            time.sleep(5)
 
 
 
@@ -189,13 +123,4 @@ parse()
 pok2=pok1
 prod2=prod1
 
-
-start_proc()
-while True:
-    try:
-        bot.polling(none_stop=True)
-    except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
-        print(e)
-        bot.send_message(477322157, (e))
-        # повторяем через 5 секунд в случае недоступности сервера Telegram
-        time.sleep(5)
+CURS()
