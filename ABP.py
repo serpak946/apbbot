@@ -113,7 +113,7 @@ def CURS():
             time.sleep(60)
         except Exception or ConnectionError or ConnectionResetError or ConnectionAbortedError or RuntimeError or TimeoutError or BaseException as e:
             print(e)
-            bot.send_message(477322157, (e))
+            #bot.send_message(477322157, (e))
             time.sleep(5)
 
 
